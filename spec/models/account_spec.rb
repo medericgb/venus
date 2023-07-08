@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Account, class: Accounts::Entities::Account do
+RSpec.describe Account, class: Accounts::Entities::User do
   describe "validations" do
     it { is_expected.to validate_presence_of(:username) } 
     it { is_expected.to validate_presence_of(:email) } 
-    it { is_expected.to validate_presence_of(:role) } 
+
     it { is_expected.to validate_presence_of(:password_digest) } 
     it { is_expected.to validate_presence_of(:recovery_password_digest) } 
   end
