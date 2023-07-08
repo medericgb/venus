@@ -1,9 +1,9 @@
 FactoryBot.define do
-  factory :account, class: Accounts::Entities::Account do
+  factory :client, class: Accounts::Entities::Client do
     pwd = SecureRandom.base64(10)
     username { Faker::Internet.username }
     email { Faker::Internet.email }
-    role { %w(admin intervenant client).sample }
+    type { "Accounts::Entities::Client" }
     password { pwd }
   end
 end
