@@ -5,8 +5,5 @@ FactoryBot.define do
     email { Faker::Internet.email }
     role { %w(admin intervenant client).sample }
     password { pwd }
-    password_confirmation { pwd }
-    password_digest {  }
-    recovery_password {  }
   end
 end

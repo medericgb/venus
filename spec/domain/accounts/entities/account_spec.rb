@@ -5,22 +5,30 @@ RSpec.describe Accounts::Entities::Account, type: :model do
   
   describe "validations" do
     it "is not valid without a username" do
-      subject.username = nil
-      expect(subject).to_not be_valid
+      account.username = nil
+      expect(account).to_not be_valid
     end
 
     it "is not valid without a email" do
-      subject.email = nil
-      expect(subject).to_not be_valid
+      account.email = nil
+      expect(account).to_not be_valid
     end
 
-    it "is not valid without a username" do
-      subject.role = nil
-      expect(subject).to_not be_valid
+    it "is not valid without a role" do
+      account.role = nil
+      expect(account).to_not be_valid
+    end
+
+    it "is not valid without a password" do
+      account.password = nil
+      expect(account).to_not be_valid
+    end
+
+    it "is valid when all required fields are present" do
+      expect(account).to be_valid
     end
   end
 
   describe "associations" do
-   // TODO:
   end
 end
