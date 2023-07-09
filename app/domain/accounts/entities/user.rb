@@ -6,7 +6,7 @@ module Accounts
       has_secure_password :recovery_password, validations: false
 
       validates :username, presence: true, uniqueness: true
-      validates :email, presence: true, uniqueness: true
+      validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'Invalid email' }
       validates :password, presence: true
     end
   end
