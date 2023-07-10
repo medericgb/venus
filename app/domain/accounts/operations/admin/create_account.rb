@@ -5,7 +5,7 @@ module Accounts
         include Interactor
 
         def call
-          context.admin = repo.create_account(context.admin_params)
+          context.admin = repo.create_account(admin_params: context.admin_params)
         rescue => e
           context.fail!(errors: "create_admin_account_error: #{e.message}")
         end
