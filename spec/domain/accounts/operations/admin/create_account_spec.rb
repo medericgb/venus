@@ -6,7 +6,7 @@ RSpec.describe Accounts::Operations::Admin::CreateAccount, type: :Interactor do
 
   describe "#call" do
     let :attrs do 
-      attributes_for(:user)
+      attributes_for(:admin)
     end
     
     context "with invalid params" do

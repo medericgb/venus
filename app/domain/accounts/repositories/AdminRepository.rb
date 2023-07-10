@@ -1,7 +1,7 @@
 module Accounts
   module Repositories
     class AdminRepository
-      def create_account(admin_params)
+      def create_account(admin_params:)
         entity.create(admin_params)
       end
 

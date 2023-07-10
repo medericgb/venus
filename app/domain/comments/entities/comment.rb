@@ -1,7 +1,12 @@
 module Comments
   module Entities
     class Comment < ApplicationRecord
-      belongs_to :commentable, polymorphic: true
+      self.table_name = "comments"
+
+      belongs_to :ticket, class_name: "Tickets::Entities::Ticket"
+      belongs_to :user, polymorphic: true
+
+      validates :content, presence: true
     end
   end
 end

@@ -4,10 +4,13 @@ module Tickets
       self.table_name = "tickets"
 
       enum state: { open: "open", closed: "closed" }
+      
+      belongs_to :client, class_name: "Accounts::Entities::Client"
+      belongs_to :intervenant, class_name: "Accounts::Entities::Intervenant"
+      has_many :comments, class_name: "Comments::Entities::Comment"
 
-      belongs_to :client
-      belongs_to :intervenant
-      has_many :comments
+      validates :title, presence: true
+      validates :description, presence: true
     end
   end
 end
