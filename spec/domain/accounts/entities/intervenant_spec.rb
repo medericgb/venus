@@ -1,3 +1,4 @@
+
 require 'rails_helper'
 
 RSpec.describe Accounts::Entities::Intervenant, type: :model do

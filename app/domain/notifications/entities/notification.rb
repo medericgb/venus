@@ -1,7 +1,7 @@
-module Comments
+module Notifications
   module Entities
-    class Comment < ApplicationRecord
-      self.table_name = "comments"
+    class Notification < ApplicationRecord
+      self.table_name = "notifications"
 
       belongs_to :ticket, class_name: "Tickets::Entities::Ticket"
       belongs_to :user, class_name: "Accounts::Entities::User"

@@ -2,7 +2,7 @@ module Accounts
   module Repositories
     class UserRepository
 
-      def create_account(user_params)
+      def create_account(user_params:)
         entity.create(user_params)
       end
 
