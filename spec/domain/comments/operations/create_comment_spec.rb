@@ -8,7 +8,7 @@ RSpec.describe Comments::Operations::CreateComment, type: :Interactor do
 
     context "with invalid params" do
       subject(:comment) { described_class.call({}) }
-    
+      
       it "fails" do
         expect(comment).not_to be_valid
       end
@@ -31,7 +31,7 @@ RSpec.describe Comments::Operations::CreateComment, type: :Interactor do
       end
 
       before do
-        @comment = CreateComment.call(comment_params: comment_params)
+        CreateComment.call(comment_params: comment_params)
       end
 
       it "creates a comment" do
