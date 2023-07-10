@@ -5,7 +5,7 @@ module Tickets
 
       belongs_to :client, class_name: "Accounts::Entities::Client"
       belongs_to :intervenant, class_name: "Accounts::Entities::Intervenant"
-      has_many :comments, class_name= "Comments::Entities::Comment"
+      has_many :comments, class_name: "Comments::Entities::Comment"
 
       validates :title, presence: true
       validates :description, presence: true
