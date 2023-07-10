@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :accounts, only: [:show]
   resources :tickets do
     post :close, on: :member
+    post :assign, on: :member
   end
   
   resources :tickets, only: [:index, :show, :new, :create, :edit, :update, :destroy]

@@ -14,6 +14,14 @@ module Tickets
         end
       end
 
+      def self.find_intervenant_with_least_tickets
+        where(role: "intervenant")
+          .left_joins(:tickets)
+          .group(:id)
+          .order('COUNT(tickets.id)')
+          .first
+      end
+
       private 
       def admin
         Accounts::Entities::Admin
