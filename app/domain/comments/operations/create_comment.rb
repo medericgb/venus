@@ -5,6 +5,7 @@ module Comments
 
       def call
         context.comment = repo.create_comment(comment_params: context.comment_params)
+        raise context.comment.inspect
       rescue => e
         context.fail!(errors: "create_comment_error: #{e.message}")
       end

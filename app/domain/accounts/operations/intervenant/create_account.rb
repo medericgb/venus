@@ -5,7 +5,7 @@ module Accounts
         include Interactor
 
         def call
-          context.intervenant = repo.create_account(context.intervenant_params)
+          context.intervenant = repo.create_account(intervenant_params: context.intervenant_params)
         rescue => e
           context.fail!(errors: "create_intervenant_account_error: #{e.message}")
         end

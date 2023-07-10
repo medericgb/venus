@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :notification do
-    message { "MyString" }
-    ticket { nil }
-    account { nil }
+    message { Faker::Lorem.paragraph }
+    ticket factory: :ticket
+    account factory: :user
   end
 end
