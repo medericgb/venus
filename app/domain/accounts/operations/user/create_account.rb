@@ -1,15 +1,15 @@
 module Accounts
-  module Queries
+  module Operations
     module User
-      class ById
+      class CreateAccount
         include Interactor
 
         def call
-          context.user = repo.by_id(context.user_id)
+          context.user = repo.create_account(context.user_params)
         rescue => e
-          context.fail!(errors: "get_user_by_id_error: #{e.message}")
+          context.fail!(errors: "create_user_account_error: #{e.message}")
         end
-
+        
         private
         def repo
           Accounts::Repositories::UserRepository.new

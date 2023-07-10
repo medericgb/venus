@@ -1,11 +1,11 @@
 module Accounts
-  module Queries
+  module Operations
     module User
-      class ByEmail
+      class GetByEmail
         include Interactor
 
         def call
-          context.user = repo.by_email(context.user_email)
+          context.user = repo.get_by_email(context.user_email)
         rescue => e
           context.fail!(errors: "get_user_by_email_error: #{e.message}")
         end
