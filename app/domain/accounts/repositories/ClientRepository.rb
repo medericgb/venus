@@ -2,7 +2,7 @@ module Accounts
   module Repositories
     class ClientRepository
       
-      def create_account(client_params)
+      def create_account(client_params:)
         entity.create(client_params)
       end
 

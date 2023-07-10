@@ -1,7 +1,7 @@
 module Accounts
   module Repositories
     class IntervenantRepository
-      def create_account(intervenant_params)
+      def create_account(intervenant_params:)
         entity.create(intervenant_params)
       end
 
