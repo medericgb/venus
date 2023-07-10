@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user
 
   def current_user
-    context = Accounts::Operations::User::G.call(user_id: session[:user_id])
+    context = Accounts::Operations::User::GetById.call(user_id: session[:user_id])
     @current_user ||= session[:user_id] && context.user
   end
 

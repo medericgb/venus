@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 
   private
   def get_user
-    context = Accounts::Operations::User::ByEmail.call(user_email: params[:login][:email])
+    context = Accounts::Operations::User::GetByEmail.call(user_email: params[:login][:email])
     context.user
   end
 
