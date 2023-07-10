@@ -5,7 +5,6 @@ module Accounts
         include Interactor
       
         def call
-          raise context.client_params.inspect
           context.client = repo.create_account(client_params: context.client_params)
         rescue => e
           context.fail!(errors: "create_client_account_error: #{e.message}")

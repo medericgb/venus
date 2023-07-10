@@ -6,5 +6,4 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-
-Accounts::Operations::User::CreateAccount.call(username: Faker::Name.first_name, email: Faker::Internet.email, type: Accounts::Entities::Intervenant, password: "azerty")
+super_admin = Accounts::Operations::Admin::CreateAccount.call(admin_params: { username: "mederic", email: "mederic@mail.com", password: "azerty" })
