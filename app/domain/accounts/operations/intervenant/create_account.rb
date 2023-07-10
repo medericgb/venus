@@ -1,9 +1,9 @@
 module Accounts
-  module Interactors
+  module Operations
     module Intervenant
       class CreateAccount
         include Interactor
-      
+
         def call
           context.intervenant = repo.create_account(context.intervenant_params)
         rescue => e

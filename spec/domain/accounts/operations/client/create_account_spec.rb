@@ -1,10 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe Accounts::Interactors::Client::CreateAccount, type: :Interactor do
+RSpec.describe Accounts::Operations::Client::CreateAccount, type: :Interactor do
   Client = Accounts::Entities::Client
-  CreateAccount = Accounts::Interactors::Client::CreateAccount
+  CreateAccount = Accounts::Operations::Client::CreateAccount
 
   describe "#call" do
+    let :attrs do 
+      attributes_for(:client)
+    end
+
     context "with invalid params" do
       subject(:client) { described_class.call({}) }
 
@@ -17,11 +21,18 @@ RSpec.describe Accounts::Interactors::Client::CreateAccount, type: :Interactor d
       end
     end
 
-    context "with valid params" do
-      let :attrs do 
-        attributes_for(:client)
+    context "when client already exists" do
+      before do
+        create(:client, attrs)
       end
-      
+
+      it "fails" do
+        client = CreateAccount.call(client_params: attrs)
+        expect(client).not_to be_valid
+      end
+    end
+
+    context "with valid params" do
       before do
         client = CreateAccount.call(client_params: attrs)
       end

@@ -1,13 +1,13 @@
 module Accounts
-  module Interactors
+  module Operations
     module User
-      class CreateAccount
+      class GetById
         include Interactor
-      
+
         def call
-          context.user = repo.create_account(context.user_params)
+          context.user = repo.get_by_id(context.user_id)
         rescue => e
-          context.fail!(errors: "create_user_account_error: #{e.message}")
+          context.fail!(errors: "get_user_by_id_error: #{e.message}")
         end
 
         private

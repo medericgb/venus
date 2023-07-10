@@ -1,5 +1,5 @@
 module Accounts
-  module Interactors
+  module Operations
     module Client
       class CreateAccount
         include Interactor

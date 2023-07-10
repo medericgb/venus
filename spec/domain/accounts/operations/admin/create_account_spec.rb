@@ -1,10 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe Accounts::Interactors::Admin::CreateAccount, type: :Interactor do
+RSpec.describe Accounts::Operations::Admin::CreateAccount, type: :Interactor do
   Admin = Accounts::Entities::Admin
-  CreateAccount = Accounts::Interactors::Admin::CreateAccount
+  CreateAccount = Accounts::Operations::Admin::CreateAccount
 
   describe "#call" do
+    let :attrs do 
+      attributes_for(:user)
+    end
+    
     context "with invalid params" do
       subject(:admin) { described_class.call({}) }
 
@@ -14,6 +18,17 @@ RSpec.describe Accounts::Interactors::Admin::CreateAccount, type: :Interactor do
 
       it "doesn't create an account" do
         expect(Admin.count).to eq(0)
+      end
+    end
+
+    context "when admin already exists" do
+      before do
+        create(:admin, attrs)
+      end
+
+      it "fails" do
+        admin = CreateAccount.call(admin_params: attrs)
+        expect(admin).not_to be_valid
       end
     end
 
