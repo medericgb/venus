@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :comment do
     ticket
-    user
+    account
     content { Faker::Lorem.paragraph }
   end
 end
