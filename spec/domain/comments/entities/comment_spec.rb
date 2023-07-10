@@ -6,7 +6,7 @@ RSpec.describe Comments::Entities::Comment, type: :model do
   end
 
   describe "associations" do
-    it { is_expected.to belong_to(:ticket)}
-    it { is_expected.to belong_to(:user)}
+    it { is_expected.to belong_to(:ticket) }
+    it { is_expected.to belong_to(:account) }
   end
 end
