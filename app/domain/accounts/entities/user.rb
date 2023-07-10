@@ -8,6 +8,8 @@ module Accounts
       validates :username, presence: true, uniqueness: true
       validates :email, presence: true, uniqueness: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: 'Invalid email' }
       validates :password, presence: true
+
+      has_many :comments, class_name: "Comments::Entities::Comment"
     end
   end
 end

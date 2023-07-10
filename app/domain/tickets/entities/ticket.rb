@@ -8,7 +8,7 @@ module Tickets
       has_many :comments, class_name: "Comments::Entities::Comment"
 
       validates :title, presence: true
-      validates :description, presence: true
+      validates :content, presence: true
     end
   end
 end
