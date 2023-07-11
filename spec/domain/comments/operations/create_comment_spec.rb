@@ -8,7 +8,7 @@ RSpec.describe Comments::Operations::CreateComment, type: :Interactor do
 
     context "with invalid params" do
       subject(:comment) { described_class.call({}) }
-      
+
       it "fails" do
         expect(comment).not_to be_valid
       end

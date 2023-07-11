@@ -19,5 +19,3 @@ ticket_3 = Tickets::Operations::CreateTicket.call(ticket_params: { title: "ticke
 ticket_4 = Tickets::Operations::CreateTicket.call(ticket_params: { title: "ticket4", content: "content4", client_id: client_1.id, intervenant_id: int_2.id })
 ticket_5 = Tickets::Operations::CreateTicket.call(ticket_params: { title: "ticket5", content: "content5", client_id: client_2.id, intervenant_id: int_2.id })
 ticket_6 = Tickets::Operations::CreateTicket.call(ticket_params: { title: "ticket6", content: "content6", client_id: client_3.id, intervenant_id: int_1.id })
-
-ints = Accounts::Entities::Intervenant.all
