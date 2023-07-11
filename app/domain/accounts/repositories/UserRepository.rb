@@ -9,6 +9,10 @@ module Accounts
       def all
         entity.all
       end
+    
+      def self.save(user)
+        user.save
+      end
 
       def get_by_id(user_id:)
         entity.find(user_id)
