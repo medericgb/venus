@@ -14,6 +14,14 @@ module Tickets
         entity.find(ticket_id).update(state: "closed")
       end
 
+      def find_by_id(ticket_id:)
+        entity.find(ticket_id)
+      end
+    
+      def save(ticket)
+        ticket.save
+      end
+
       private 
       def entity
         Tickets::Entities::Ticket

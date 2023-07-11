@@ -17,6 +17,19 @@ class TicketsController < ApplicationController
     else
       redirect_to new_ticket_path, alert: "Failed to create ticket."
     end
+
+    @ticket = Tickets::Entities::Ticket.new(ticket_params)
+    # Supposons que le client actuel soit le créateur du ticket
+    @ticket.client = current_user 
+
+    if @ticket.save
+      # Création réussie du ticket, envoi de la notification aux intervenants
+      Notifications::Operations::NotifyIntervenant.call(ticket_id: @ticket.id)
+
+      redirect_to @ticket, notice: "Ticket créé avec succès."
+    else
+      render :new
+    end
   end
 
   def show
@@ -28,6 +41,10 @@ class TicketsController < ApplicationController
   end
 
   def update
+  end
+
+  def notify_client_reply(ticket_id, message)
+    Notifications::Operations::ClientNotification.notify_client_reply(ticket_id, message)
   end
 
   private
