@@ -1,12 +1,12 @@
 module Tickets
   module Operations
-    class CreateTicket
+    class GetById
       include Interactor
     
       def call
-        context.ticket = repo.create_ticket(ticket_params: context.ticket_params)
+        context.ticket = repo.get_by_id(ticket_id: context.ticket_id)
       rescue => e
-        context.fail!(errors: "create_ticket_error: #{e.message}")
+        context.fail!(errors: "get_ticket_by_id_error: #{e.message}")
       end
 
       private
