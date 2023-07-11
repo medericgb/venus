@@ -1,0 +1,17 @@
+<!-- app/views/tickets/edit.html.erb -->
+<h1>Edit Ticket</h1>
+
+<%= form_with(model: @ticket, url: ticket_path(@ticket), method: :patch) do |form| %>
+  <!-- Champs du formulaire pour la modification du ticket -->
+  <%= form.label :title %>
+  <%= form.text_field :title %>
+
+  <%= form.label :description %>
+  <%= form.text_area :description %>
+
+  <!-- Ajout d'un champ pour la mise à jour de l'attribut 'state' -->
+  <%= form.label :state %>
+  <%= form.select :state, Ticket.states.keys.map { |s| [s.humanize, s] } %>
+
+  <%= form.submit "Update Ticket" %>
+<% end %>

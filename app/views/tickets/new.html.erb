@@ -1,0 +1,8 @@
+<%= form_with(model: @ticket, url: tickets_path) do |form| %>
+  <!-- Champs du formulaire pour le titre, la description, etc. -->
+  <%= form.text_field :title %>
+  <%= form.text_area :description %>
+  <!-- Autres champs du formulaire -->
+
+  <%= form.submit "Create Ticket" %>
+<% end %>

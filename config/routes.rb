@@ -6,6 +6,14 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   
   resources :accounts, only: [:show]
+  resources :tickets do
+    post :close, on: :member
+    post :assign, on: :member
+  end
+  
+  resources :tickets, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+
+
   
   # Defines the root path route ("/")
   root "accounts#show"

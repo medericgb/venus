@@ -2,6 +2,8 @@ module Tickets
   module Entities
     class Ticket < ApplicationRecord
       self.table_name = "tickets"
+      
+      STATES = ["open", "closed"]
 
       belongs_to :client, class_name: "Accounts::Entities::Client"
       belongs_to :intervenant, class_name: "Accounts::Entities::Intervenant"
@@ -9,6 +11,7 @@ module Tickets
 
       validates :title, presence: true
       validates :content, presence: true
+      validates :state, presence: true, inclusion: { in: STATES }
     end
   end
 end
