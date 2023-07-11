@@ -36,7 +36,6 @@ RSpec.describe Tickets::Operations::CreateTicket, type: :Interactor do
       end
 
       it "creates a ticket" do
-        # raise @ticket.errors.inspect
         expect(Ticket.count).to eq(1)
       end
     end
