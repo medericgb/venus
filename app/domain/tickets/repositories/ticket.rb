@@ -1,6 +1,11 @@
 module Tickets
   module Repositories
     class Ticket
+
+      def get_by_id(ticket_id:)
+        entity.find(ticket_id)
+      end
+
       def create_ticket(ticket_params:)
         entity.create(ticket_params)
       end
@@ -9,11 +14,11 @@ module Tickets
         entity.find(ticket_id).update(state: "closed")
       end
 
-      def self.find_by_id(ticket_id)
-        Ticket.find_by(id: ticket_id)
+      def find_by_id(ticket_id:)
+        entity.find(ticket_id)
       end
     
-      def self.save(ticket)
+      def save(ticket)
         ticket.save
       end
 
