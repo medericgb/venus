@@ -3,7 +3,6 @@ module Accounts
     class ClientRepository
       
       def create_account(client_params:)
-        raise client_params.inspect
         entity.create(client_params)
       end
 

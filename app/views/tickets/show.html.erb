@@ -1,0 +1,6 @@
+<div>
+  <h2 class="text-3xl"><%= @ticket.title %></h2>
+  <h2><%= @ticket.content %></h2>
+
+  <%= render partial: "create_comment", locals: { ticket: @ticket } %>
+</div>

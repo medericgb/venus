@@ -1,54 +1,43 @@
 class TicketsController < ApplicationController
 
   def index
-    @number_of_open_tickets = Ticket.where(status: 'open').count
-    @number_of_closed_tickets = Ticket.where(status: 'closed').count
-    @tickets_by_intervenant = Ticket.where(assigned_to: current_account.id).group(:status).count
+    # @number_of_open_tickets = Ticket.where(status: 'open').count
+    # @number_of_closed_tickets = Ticket.where(status: 'closed').count
+    # @tickets_by_intervenant = Ticket.where(assigned_to: current_account.id).group(:status).count
   end 
 
   def new
-    @ticket = CreateTicket.call
+    @ticket = Tickets::Entities::Ticket.new
   end
 
   def create
-    @ticket = CreateTicket.call
-    if @ticket.save
-      redirect_to @ticket, notice: "Ticket created successfully."
+    context = Tickets::Operations::CreateTicket.call(ticket_params: create_ticket_params)
+    if context.ticket.save
+      redirect_to tickets_path, notice: "Ticket created successfully."
     else
-      render :new
+      redirect_to new_ticket_path, alert: "Failed to create ticket."
     end
   end
 
-  def assign
-    @ticket = Tickets::Operations::GetByIdfind(params[:id])
-    assignee = Account.find_intervenant_with_least_tickets
-    @ticket.assigned_to = assignee.id
-    if @ticket.save
-      redirect_to @ticket, notice: "Ticket assigned successfully."
-    else
-      redirect_to @ticket, alert: "Failed to assign ticket."
-    end
+  def show
+    context = Tickets::Operations::GetById.call(ticket_id: params[:id])
+    @ticket = context.ticket
   end
 
   def edit
-    @ticket = Tickets::Operations::GetById(params[:id])
   end
 
   def update
-    @ticket = Tickets::Operations::GetById(params[:id])
-    current_account.close_ticket(@ticket)
-    redirect_to @ticket
-    if @ticket.update!
-      redirect_to @ticket, notice: "Ticket updated successfully."
-    else
-      render :edit
-    end
   end
 
   private
+  def create_ticket_params
+    params[:tickets_entities_ticket].merge(intervenant_id: intervenant_with_less_tickets.id, client_id: @current_user.id).permit!
+  end
 
-  def ticket_params
-    params.require(:ticket)
+  def intervenant_with_less_tickets
+    context = Accounts::Operations::Intervenant::GetIntervenantWithLessTickets.call
+    context.intervenant
   end
 end
 
